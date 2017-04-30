@@ -12,7 +12,7 @@ Errbug::Container.namespace "persistence" do |persistence|
       rom_config = ROM::Configuration.new(
         :sql,
         persistence.settings.database_url,
-        extensions: [:error_sql]
+        extensions: [:error_sql, :pg_enum]
       )
 
       rom_config.plugin(:sql, relations: :instrumentation) do |p|
