@@ -5,5 +5,5 @@ module Types
   include Dry::Types.module
 
   Severity = Types::Strict::String.default('error').enum('error', 'info', 'warning')
-  Status = Types::Strict::String.default('open').enum('open', 'new', 'fixed', 'snoozed')
+  Status = Types::Strict::String.default('new').enum('new', 'open', 'fixed', 'snoozed')
 end

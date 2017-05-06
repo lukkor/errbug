@@ -50,8 +50,20 @@ SET search_path = public, pg_catalog;
 
 CREATE TYPE severity_type AS ENUM (
     'error',
-    'warning',
-    'info'
+    'info',
+    'warning'
+);
+
+
+--
+-- Name: status_type; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE status_type AS ENUM (
+    'new',
+    'open',
+    'fixed',
+    'snoozed'
 );
 
 
@@ -69,6 +81,7 @@ CREATE TABLE exceptions (
     message text NOT NULL,
     stacktrace jsonb,
     severity severity_type NOT NULL,
+    status status_type NOT NULL,
     created_at timestamp without time zone DEFAULT now() NOT NULL
 );
 
