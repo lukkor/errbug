@@ -8,6 +8,10 @@ module Persistence
         attribute(:stacktrace, Types::PG::JSONB.optional)
         attribute(:severity, Types::String)
         attribute(:created_at, Types::Time)
+
+        associations do
+          has_many :events
+        end
       end
 
       dataset do

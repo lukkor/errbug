@@ -72,6 +72,19 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE events (
+    id uuid DEFAULT uuid_generate_v4() NOT NULL,
+    exception_id uuid,
+    meta jsonb,
+    env text NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+--
 -- Name: exceptions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -96,6 +109,14 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: exceptions exceptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -109,6 +130,14 @@ ALTER TABLE ONLY exceptions
 
 ALTER TABLE ONLY schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (filename);
+
+
+--
+-- Name: events events_exception_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT events_exception_id_fkey FOREIGN KEY (exception_id) REFERENCES exceptions(id);
 
 
 --
