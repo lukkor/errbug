@@ -3,6 +3,7 @@ require "types"
 module Main
   module Entities
     class Exception < Dry::Struct
+      attribute(:id, Types::Strict::String)
       attribute(:error_class, Types::Strict::String)
       attribute(:message, Types::Strict::String)
       attribute(:severity, Types::Severity)
